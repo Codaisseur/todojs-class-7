@@ -85,11 +85,11 @@
 
     <ul id="todolist">
       <li class="todo">
-        <input id="todo-1" type="checkbox">
+        <input id="todo-1" type="checkbox" onChange="toggleDone.bind(this)()">
         <label for="todo-1">Sweep the floor</label>
       </li>
       <li class="todo completed">
-        <input id="todo-2" type="checkbox" checked>
+        <input id="todo-2" type="checkbox" checked="checked" onChange="toggleDone.bind(this)()">
         <label for="todo-2">Dust the vases</label>
       </li>
     </ul>
@@ -115,8 +115,19 @@
       totalCountEl.innerHTML = totalCount;
     }
 
+    var toggleDone = function() {
+      var completed = this.checked;
+      var todoItemEl = this.parentElement;
+
+      if (completed) {
+        todoItemEl.className = "todo completed";
+      } else {
+        todoItemEl.className = "todo";
+      }
+      updateCounters();
+    }
+
     updateCounters();
   </script>
-
 </body>
 </html>
